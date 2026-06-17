@@ -1,0 +1,2 @@
+# jutsack
+Dijital Dönüşüm Planı
