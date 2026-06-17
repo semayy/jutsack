@@ -74,7 +74,7 @@
                     <button onclick="switchTab('marka')" id="btn-marka" class="tab-btn active px-2 py-2 md:py-3 text-[#111111] transition-colors uppercase tracking-widest text-[10px] sm:text-xs">Durum Analizi</button>
                     <button onclick="switchTab('huni')" id="btn-huni" class="tab-btn px-2 py-2 md:py-3 text-gray-500 hover:text-[#111111] transition-colors uppercase tracking-widest text-[10px] sm:text-xs">Dönüşüm</button>
                     <button onclick="switchTab('menu')" id="btn-menu" class="tab-btn px-2 py-2 md:py-3 text-gray-500 hover:text-[#111111] transition-colors uppercase tracking-widest text-[10px] sm:text-xs">Ürün & Kârlılık</button>
-                    <button onclick="switchTab('icerik')" id="btn-icerik" class="tab-btn px-2 py-2 md:py-3 text-gray-500 hover:text-[#111111] transition-colors uppercase tracking-widest text-[10px] sm:text-xs">İçerik & Takvim</button>
+                    <button onclick="switchTab('icerik')" id="btn-icerik" class="tab-btn px-2 py-2 md:py-3 text-gray-500 hover:text-[#111111] transition-colors uppercase tracking-widest text-[10px] sm:text-xs">Satış & Takvim</button>
                     <button onclick="switchTab('seo')" id="btn-seo" class="tab-btn px-2 py-2 md:py-3 text-gray-500 hover:text-[#111111] transition-colors uppercase tracking-widest text-[10px] sm:text-xs">Omnichannel</button>
                     <button onclick="switchTab('altyapi')" id="btn-altyapi" class="tab-btn px-2 py-2 md:py-3 text-gray-500 hover:text-[#111111] transition-colors uppercase tracking-widest text-[10px] sm:text-xs">Altyapı & UX</button>
                     <button onclick="switchTab('plan')" id="btn-plan" class="tab-btn px-2 py-2 md:py-3 text-gray-500 hover:text-[#111111] transition-colors uppercase tracking-widest text-[10px] sm:text-xs">Yol Haritası</button>
@@ -235,43 +235,92 @@
 
         <section id="view-icerik" class="view-section hidden animate-fade-in">
             <div class="mb-8 md:mb-10 bg-white p-6 sm:p-8 md:p-12 border border-gray-200">
-                <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif text-[#111111] mb-4 md:mb-6 leading-tight">İçerik Matrisi & Sosyal Medya</h1>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif text-[#111111] mb-4 md:mb-6 leading-tight">Yaz 2026 Satış Odaklı Takvim</h1>
                 <p class="text-base sm:text-lg leading-relaxed text-gray-600 mb-6 md:mb-8 font-light">
-                    Kişisel hesap stratejisi: Doğal Hanım'ın hesabını bir "ürün kataloğuna" çevirmeden (%70 Lifestyle, %30 Satış kuralı), samimi bir dille markayı büyütme takvimi.
+                    Kişisel hesap stratejisi: Doğal Hanım'ın hesabını bir "kataloğa" çevirmeden, samimi bir dille Türkiye tatil rotaları (Bodrum, Çeşme, Göcek vb.) üzerinden agresif satışa (FOMO ve CTA) yönlendiren 30 günlük yaz takvimidir.
                 </p>
 
                 <div class="flex flex-wrap gap-2 sm:gap-3 mb-6 md:mb-8 border-b border-gray-200 pb-4 sm:pb-6">
-                    <button class="px-3 sm:px-5 py-2 text-[10px] sm:text-xs uppercase tracking-widest font-bold bg-[#111111] text-white border border-[#111111]">Tümü (30 Gün)</button>
+                    <button class="px-3 sm:px-5 py-2 text-[10px] sm:text-xs uppercase tracking-widest font-bold bg-[#111111] text-white border border-[#111111]">Tümü (Yaz Sezonu)</button>
                 </div>
 
                 <div class="overflow-x-auto border border-gray-200 no-scrollbar">
                     <table class="min-w-full text-xs sm:text-sm text-left text-gray-700">
                         <thead class="text-[10px] sm:text-xs text-[#111111] uppercase tracking-widest bg-gray-50 border-b border-gray-200">
                             <tr>
-                                <th scope="col" class="px-4 py-3 font-semibold whitespace-nowrap">Format</th>
-                                <th scope="col" class="px-4 py-3 font-semibold whitespace-nowrap">Yayıncı / Kanal</th>
-                                <th scope="col" class="px-4 py-3 font-semibold whitespace-nowrap">İçerik Odağı</th>
-                                <th scope="col" class="px-4 py-3 font-semibold min-w-[200px]">Uygulama & CTA</th>
+                                <th scope="col" class="px-4 py-3 font-semibold whitespace-nowrap">Zaman / Dönem</th>
+                                <th scope="col" class="px-4 py-3 font-semibold whitespace-nowrap">Format & Yayıncı</th>
+                                <th scope="col" class="px-4 py-3 font-semibold min-w-[200px]">İçerik Odağı (Türkiye Yaz 2026)</th>
+                                <th scope="col" class="px-4 py-3 font-semibold min-w-[200px]">Satış Tetikleyicisi & CTA</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100">
+                            <!-- Hafta 1 -->
                             <tr class="hover:bg-gray-50 transition-colors">
-                                <td class="px-4 py-3"><span class="border border-gray-300 px-2 py-1 text-[9px] uppercase font-bold">Post (Sabit)</span></td>
-                                <td class="px-4 py-3 font-semibold">Doğal Mesudiyeli</td>
-                                <td class="px-4 py-3 text-gray-600">Sezon Favorileri Kaydırmalı Post</td>
-                                <td class="px-4 py-3 font-light text-gray-500">Profilin en üstüne sabitlenecek. Rahatsız etmeden, şık bir şekilde yeni sezonu tanıtır. CTA: "Bio'daki link"</td>
+                                <td class="px-4 py-4 font-semibold text-[#111111] border-r border-gray-100">Hafta 1<br><span class="text-[9px] font-light text-gray-500 uppercase">Temmuz Başı</span></td>
+                                <td class="px-4 py-4">
+                                    <span class="border border-[#111111] px-2 py-1 text-[9px] uppercase font-bold text-white bg-[#111111]">Reels (Sabit)</span><br>
+                                    <span class="text-[10px] text-gray-500 mt-2 block">Doğal Mesudiyeli</span>
+                                </td>
+                                <td class="px-4 py-4 text-gray-600">
+                                    <strong class="text-black block mb-1">Bodrum Bavulumda Ne Var?</strong>
+                                    Tatil öncesi hazırlık telaşı. Siyah Pareo ve Pinky Shorts Set valize yerleştirilirken gösterilir. Pratik ve kırışmaz kumaş vurgusu.
+                                </td>
+                                <td class="px-4 py-4">
+                                    <p class="font-light text-gray-500 text-xs mb-1">Aciliyet yaratır: "Tatil öncesi kargoya yetiş."</p>
+                                    <span class="text-[#C5A059] font-bold text-[10px] uppercase">CTA: "Bavulunu Hazırla - Link Bio'da"</span>
+                                </td>
                             </tr>
+                            
+                            <!-- Hafta 2 -->
                             <tr class="hover:bg-gray-50 transition-colors">
-                                <td class="px-4 py-3"><span class="border border-gray-300 px-2 py-1 text-[9px] uppercase font-bold">Story</span></td>
-                                <td class="px-4 py-3 font-semibold">Doğal Mesudiyeli</td>
-                                <td class="px-4 py-3 text-gray-600">Günlük Lifestyle & Atölye</td>
-                                <td class="px-4 py-3 font-light text-gray-500">Üretim süreci, kargolama, kumaş seçimi gibi insani anlar. Güven tazeler.</td>
+                                <td class="px-4 py-4 font-semibold text-[#111111] border-r border-gray-100">Hafta 2<br><span class="text-[9px] font-light text-gray-500 uppercase">Temmuz Ortası</span></td>
+                                <td class="px-4 py-4">
+                                    <span class="border border-[#C5A059] px-2 py-1 text-[9px] uppercase font-bold text-[#C5A059]">Whitelisting Ads</span><br>
+                                    <span class="text-[10px] text-gray-500 mt-2 block">Mikro-Influencer</span>
+                                </td>
+                                <td class="px-4 py-4 text-gray-600">
+                                    <strong class="text-black block mb-1">Çeşme Happy Hour Şıklığı</strong>
+                                    Influencer, gündüz plajda giydiği Şort Gömlek takımını ufak bir aksesuarla akşam yemeğine uyarlar. "Tek parça, 2 farklı konsept".
+                                </td>
+                                <td class="px-4 py-4">
+                                    <p class="font-light text-gray-500 text-xs mb-1">Doğrudan dönüşüm ve Apple Pay yönlendirmesi.</p>
+                                    <span class="text-[#C5A059] font-bold text-[10px] uppercase">CTA: "Şimdi Satın Al / Sepete Ekle"</span>
+                                </td>
                             </tr>
+
+                            <!-- Hafta 3 -->
                             <tr class="hover:bg-gray-50 transition-colors">
-                                <td class="px-4 py-3"><span class="border border-[#C5A059] text-[#C5A059] px-2 py-1 text-[9px] uppercase font-bold">Reels (Ads)</span></td>
-                                <td class="px-4 py-3 font-semibold">Mikro-Influencer</td>
-                                <td class="px-4 py-3 text-gray-600">Şort Gömlek Takım İncelemesi</td>
-                                <td class="px-4 py-3 font-light text-gray-500">Influencer'ın hesabı üzerinden markaya (Whitelisting) reklam çıkılır. Doğrudan siteye çeker.</td>
+                                <td class="px-4 py-4 font-semibold text-[#111111] border-r border-gray-100">Hafta 3<br><span class="text-[9px] font-light text-gray-500 uppercase">Ağustos Sıcakları</span></td>
+                                <td class="px-4 py-4">
+                                    <span class="border border-gray-300 px-2 py-1 text-[9px] uppercase font-bold text-gray-600">Story Serisi</span><br>
+                                    <span class="text-[10px] text-gray-500 mt-2 block">Doğal Mesudiyeli</span>
+                                </td>
+                                <td class="px-4 py-4 text-gray-600">
+                                    <strong class="text-black block mb-1">Atölyeden Güncellemeler (FOMO)</strong>
+                                    Yazlık lokomotif ürünlerin atölyedeki son kargolanma süreçleri. Tükenmek üzere olan renk/beden uyarıları. "Kargolar yola çıktı".
+                                </td>
+                                <td class="px-4 py-4">
+                                    <p class="font-light text-gray-500 text-xs mb-1">Stok korkusu (FOMO) ile anlık dürtüsel satış.</p>
+                                    <span class="text-[#25D366] font-bold text-[10px] uppercase">CTA: "Son 15 Adet - WhatsApp'tan Ayırt"</span>
+                                </td>
+                            </tr>
+
+                            <!-- Hafta 4 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-4 py-4 font-semibold text-[#111111] border-r border-gray-100">Hafta 4<br><span class="text-[9px] font-light text-gray-500 uppercase">Sezon Kapanış</span></td>
+                                <td class="px-4 py-4">
+                                    <span class="border border-gray-300 px-2 py-1 text-[9px] uppercase font-bold text-gray-600">Post (Carousel)</span><br>
+                                    <span class="text-[10px] text-gray-500 mt-2 block">Doğal Mesudiyeli</span>
+                                </td>
+                                <td class="px-4 py-4 text-gray-600">
+                                    <strong class="text-black block mb-1">Şehirde Kalanlar & Hafta Sonu Kaçamağı</strong>
+                                    Tatile gidemeyenler için İstanbul/Ankara'nın sıcak günlerinde terletmeyen, hafif kumaşlarla "Şehirde Hafta Sonu" kombin önerileri.
+                                </td>
+                                <td class="px-4 py-4">
+                                    <p class="font-light text-gray-500 text-xs mb-1">Tatilci olmayan segmentten ciro toplama.</p>
+                                    <span class="text-[#C5A059] font-bold text-[10px] uppercase">CTA: "Stilini Seç - Sepetini Tamamla"</span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -443,7 +492,7 @@
                                     <h3 class="font-serif text-xl sm:text-2xl text-[#111111]">Strateji & Yönetim Bedeli</h3>
                                 </div>
                                 <div class="text-right">
-                                    <span class="font-bold text-2xl sm:text-3xl text-[#111111]">55.000 ₺</span>
+                                    <span class="font-bold text-2xl sm:text-3xl text-[#111111]">50.000 ₺</span>
                                     <span class="text-[10px] text-gray-500 block">/ 3 Ay Toplam (+KDV)</span>
                                 </div>
                             </div>
@@ -477,10 +526,13 @@
 
     </main>
 
-    <footer class="bg-[#111111] text-white py-8 sm:py-12 mt-auto border-t border-[#333]">
+    <footer class="bg-[#111111] text-white py-10 sm:py-14 mt-auto border-t border-[#333]">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <img src="https://jutsack.com/data/files/source/jutsack-logo1.png" alt="Jutsack" class="h-8 mx-auto mb-4 filter brightness-0 invert opacity-80">
-            <p class="text-[10px] sm:text-xs text-gray-500 uppercase tracking-widest">Dijital Pazarlama & Fizibilite Stratejisi</p>
+            <img src="https://jutsack.com/data/files/source/jutsack-logo1.png" alt="Jutsack" class="h-8 mx-auto mb-6 filter brightness-0 invert opacity-80">
+            <p class="text-[10px] sm:text-xs text-gray-400 uppercase tracking-widest leading-relaxed">
+                Bu rapor Görsel İletişim Tasarım ve Dijital Dönüşüm Uzmanı <br class="sm:hidden"><strong class="text-white">Semanur Ayyıldız</strong> tarafından <strong class="text-[#C5A059]">Jutsack</strong> için hazırlanmıştır.<br>
+                <span class="mt-2 block opacity-70">Tüm hakları saklıdır. © 2026</span>
+            </p>
         </div>
     </footer>
 
