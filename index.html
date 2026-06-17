@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jutsack - Genişletilmiş Dijital & Büyüme Stratejisi</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F9F9F9; color: #111111; }
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+        
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 40vh;
+            max-height: 400px;
+            min-height: 300px;
+        }
+
+        .tab-btn.active {
+            border-bottom: 2px solid #C5A059;
+            color: #111111;
+            font-weight: 600;
+        }
+
+        .hover-card { transition: background-color 0.3s ease, border-color 0.3s ease; }
+        .hover-card:hover { background-color: #F4F4F4; border-color: #111111; }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background-color: #111111;
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .table-row-hover:hover td { background-color: #f3f4f6; }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:justify-between md:h-20">
+                <div class="flex items-center justify-center md:justify-start h-14 md:h-full border-b border-gray-100 md:border-none">
+                    <img src="https://jutsack.com/data/files/source/jutsack-logo1.png" alt="Jutsack Logo" class="h-8 md:h-10 object-contain">
+                </div>
+                <div class="flex space-x-4 overflow-x-auto no-scrollbar items-center justify-start md:justify-end text-sm sm:text-base whitespace-nowrap px-2 py-3 md:py-0">
+                    <button onclick="switchTab('marka')" id="btn-marka" class="tab-btn active px-1 sm:px-2 py-2 md:py-3 text-gray-500 hover:text-[#111111] transition-colors uppercase tracking-widest text-[10px] sm:text-xs">Durum & Kıyas</button>
+                    <button onclick="switchTab('altyapi')" id="btn-altyapi" class="tab-btn px-1 sm:px-2 py-2 md:py-3 text-gray-500 hover:text-[#111111] transition-colors uppercase tracking-widest text-[10px] sm:text-xs">Web & Teknik</button>
+                    <button onclick="switchTab('seo')" id="btn-seo" class="tab-btn px-1 sm:px-2 py-2 md:py-3 text-gray-500 hover:text-[#111111] transition-colors uppercase tracking-widest text-[10px] sm:text-xs">SEO & AI Otorite</button>
+                    <button onclick="switchTab('huni')" id="btn-huni" class="tab-btn px-1 sm:px-2 py-2 md:py-3 text-gray-500 hover:text-[#111111] transition-colors uppercase tracking-widest text-[10px] sm:text-xs">Reklam & Bütçe</button>
+                    <button onclick="switchTab('icerik')" id="btn-icerik" class="tab-btn px-1 sm:px-2 py-2 md:py-3 text-gray-500 hover:text-[#111111] transition-colors uppercase tracking-widest text-[10px] sm:text-xs">İçerik & Takvim</button>
+                    <button onclick="switchTab('plan')" id="btn-plan" class="tab-btn px-1 sm:px-2 py-2 md:py-3 text-gray-500 hover:text-[#111111] transition-colors uppercase tracking-widest text-[10px] sm:text-xs">6 Aylık Plan</button>
+                    <button onclick="switchTab('hizmet')" id="btn-hizmet" class="tab-btn px-1 sm:px-2 py-2 md:py-3 text-gray-500 hover:text-[#111111] transition-colors uppercase tracking-widest text-[10px] sm:text-xs">Hizmet & Bedel</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10 w-full">
+
+        <!-- DURUM VE FINANSAL KIYAS -->
+        <section id="view-marka" class="view-section block animate-fade-in">
+            <div class="mb-8 md:mb-10 bg-white p-6 sm:p-8 md:p-12 border border-gray-200">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif text-[#111111] mb-4 md:mb-6 leading-tight">Finansal Kıyas & Mevcut Durum</h1>
+                <p class="text-base sm:text-lg leading-relaxed text-gray-600 mb-8 md:mb-10 font-light">
+                    2025 yılı başarılarının ardından, 2026'da Meta hesabının askıya alınmasıyla yaşanan daralmanın verisel boyutu. Kârlı ürünleri tespit edip, köprü stratejisiyle zararı kapatacağız.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-gray-50 p-6 sm:p-8 border border-gray-200">
+                        <span class="text-[10px] uppercase tracking-widest font-bold text-[#C5A059] block mb-2">2025 vs 2026 (Mayıs Kesiti)</span>
+                        <h3 class="font-serif text-xl sm:text-2xl text-[#111111] mb-4">Ciro & Sipariş Daralması</h3>
+                        <div class="space-y-4 font-light text-sm text-gray-700">
+                            <div class="flex justify-between border-b border-gray-200 pb-2">
+                                <span>2025 Mayıs Ciro:</span> <strong class="text-black">443.000 TL</strong>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-200 pb-2 text-red-600">
+                                <span>2026 Mayıs Ciro:</span> <strong>247.521 TL (%44 Düşüş)</strong>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-200 pb-2">
+                                <span>Altın Veri (AOV):</span> <strong class="text-black">~5.600 TL Sepet Ortalaması</strong>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2 italic">Teşhis: Düşüşün yegane sebebi Instagram trafik akışının kesilmesidir. Ürün veya marka kaynaklı bir talep sorunu yoktur.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 sm:p-8 border border-gray-200">
+                        <span class="text-[10px] uppercase tracking-widest font-bold text-[#C5A059] block mb-2">Ürün Kârlılık Kıyası</span>
+                        <h3 class="font-serif text-xl sm:text-2xl text-[#111111] mb-4">Hangi Ürüne Odaklanacağız?</h3>
+                        <ul class="space-y-3 font-light text-sm text-gray-700">
+                            <li class="flex justify-between items-center">
+                                <span>Siyah Pareo</span>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 text-[10px] font-bold uppercase">%57 Brüt Kâr</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span>Pinky Shorts Set</span>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 text-[10px] font-bold uppercase">%30 Brüt Kâr</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span>Montana Çanta</span>
+                                <span class="bg-red-100 text-red-800 px-2 py-1 text-[10px] font-bold uppercase">%4 Brüt Kâr</span>
+                            </li>
+                        </ul>
+                        <p class="text-xs text-gray-500 mt-4 leading-relaxed">Aksiyon: Reklam harcamaları (Google PMax, TikTok) düşük kârlı ürünlere değil, sepeti yukarı çeken pareo ve setlere yoğunlaşacaktır.</p>
+                    </div>
+                </div>
+
+                <div class="bg-[#111111] text-white p-6 sm:p-8">
+                    <h4 class="font-serif text-xl sm:text-2xl text-[#C5A059] mb-4">Meta Askı Krizi & Köprü Çözümü</h4>
+                    <p class="font-light text-sm mb-4 leading-relaxed text-gray-300">Yedek hesap açıp sıfırdan güven inşa etmek yerine, <strong>Kurucu Ortak (Doğal Mesudiyeli)</strong> kişisel hesabı üzerinden markanın insani yüzü olarak konumlandırılacaktır.</p>
+                    <ul class="list-none space-y-3 font-light text-xs sm:text-sm tracking-wide">
+                        <li class="flex items-start"><span class="mr-3 text-[#C5A059]">―</span> <span>Doğal Mesudiyeli'nin profiline sezonluk kaydırmalı (carousel) ürün postu sabitlenecektir.</span></li>
+                        <li class="flex items-start"><span class="mr-3 text-[#C5A059]">―</span> <span>Hesap akışını bozmayacak şekilde, günlük "lifestyle" ve atölye hikayeleriyle siteye link verilecektir.</span></li>
+                        <li class="flex items-start"><span class="mr-3 text-[#C5A059]">―</span> <span>Web sitesindeki Instagram ikonları geçici olarak doğrudan bu hesaba veya aktif TikTok hesabına yönlendirilecektir.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- WEB & TEKNIK ALTYAPI -->
+        <section id="view-altyapi" class="view-section hidden animate-fade-in">
+            <div class="mb-8 md:mb-10 bg-white p-6 sm:p-8 md:p-12 border border-gray-200">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif text-[#111111] mb-4 md:mb-6 leading-tight">Web Analizi & Teknik İhtiyaçlar</h1>
+                <p class="text-base sm:text-lg leading-relaxed text-gray-600 mb-8 md:mb-10 font-light">
+                    Jutsack.com'un mevcut performans değerlendirmesi, cihaz bazlı UI/UX eksikleri ve e-ticaret altyapı sağlayıcısından (Vikaon vb.) talep edilmesi gereken güncellemeler.
+                </p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                    <div class="border border-gray-200 p-6 sm:p-8 bg-white relative">
+                        <span class="absolute top-0 right-0 bg-[#111111] text-white px-3 py-1 text-[10px] uppercase font-bold tracking-widest">Trafiğin %88'i</span>
+                        <h3 class="font-serif text-xl sm:text-2xl text-[#111111] mb-4">Mobil Deneyim (Mobile-First)</h3>
+                        <ul class="space-y-4 text-sm font-light text-gray-700">
+                            <li><strong class="font-semibold text-black">Mevcut Durum:</strong> iOS/iPhone cihazlar ödemelerin %90'ını oluşturuyor. Görseller yüksek kaliteli ama geç yükleniyor.</li>
+                            <li><strong class="font-semibold text-[#C5A059]">Gerekli Aksiyon (Yapışkan Sepet):</strong> Ürün detay sayfasında aşağı kaydırıldıkça "Sepete Ekle" butonu ekranın altında sabit (sticky) kalmalıdır.</li>
+                            <li><strong class="font-semibold text-[#C5A059]">Gerekli Aksiyon (Hızlı Ödeme):</strong> Apple Pay / Google Pay veya iyzico Hızlı Ödeme entegrasyonu şarttır. Telefondan kredi kartı girmek sepet terkini artırır.</li>
+                        </ul>
+                    </div>
+
+                    <div class="border border-gray-200 p-6 sm:p-8 bg-gray-50 relative">
+                        <span class="absolute top-0 right-0 border-l border-b border-gray-200 bg-white text-gray-500 px-3 py-1 text-[10px] uppercase font-bold tracking-widest">Trafiğin %12'si</span>
+                        <h3 class="font-serif text-xl sm:text-2xl text-[#111111] mb-4">Masaüstü Deneyim (Desktop)</h3>
+                        <ul class="space-y-4 text-sm font-light text-gray-700">
+                            <li><strong class="font-semibold text-black">Mevcut Durum:</strong> Geniş ekranlarda whitespace (boşluk) kullanımı zayıf. "Tükendi" ibaresi çok fazla yer kaplıyor.</li>
+                            <li><strong class="font-semibold text-[#C5A059]">Gerekli Aksiyon (Kategori Yönetimi):</strong> Panel üzerinden "Stokta olmayan ürünleri en sona at" özelliği aktif edilmelidir.</li>
+                            <li><strong class="font-semibold text-[#C5A059]">Gerekli Aksiyon (Hover):</strong> Listeleme sayfalarında ürün görseli üzerine gelince (Hover) 2. görsel (mankenli lifestyle çekim) görünmelidir.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-200 pt-10">
+                    <h2 class="text-2xl sm:text-3xl font-serif text-[#111111] mb-6">Servis Sağlayıcı & Teknik Beklentiler</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-sm font-bold uppercase tracking-widest text-[#C5A059] mb-4">E-Ticaret Paketinden (Vikaon) Talepler</h3>
+                            <div class="space-y-3">
+                                <div class="bg-gray-50 p-4 border border-gray-200">
+                                    <h4 class="font-bold text-[#111111] text-xs sm:text-sm">1. Gelişmiş XML Feed Export</h4>
+                                    <p class="text-[10px] sm:text-xs text-gray-500 mt-1">Google Merchant Center ve PMax kampanyaları için ürünlerin varyant, renk, fiyat verilerinin hatasız dışa aktarımı.</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 border border-gray-200">
+                                    <h4 class="font-bold text-[#111111] text-xs sm:text-sm">2. WebP Görsel Sıkıştırma</h4>
+                                    <p class="text-[10px] sm:text-xs text-gray-500 mt-1">Sitedeki tüm PNG/JPG görsellerin otomatik olarak yeni nesil WebP formatına çevrilmesi (Sayfa açılış hızını %40 artırır).</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 border border-gray-200">
+                                    <h4 class="font-bold text-[#111111] text-xs sm:text-sm">3. Çoklu Dil / Kur Entegrasyonu</h4>
+                                    <p class="text-[10px] sm:text-xs text-gray-500 mt-1">İngilizce versiyonda ürün fiyatlarının IP'ye göre otomatik USD/EUR görünmesi (E-ihracat altyapısı).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-sm font-bold uppercase tracking-widest text-[#111111] mb-4">GSC & JSON-LD (Bizi Neler Bekliyor?)</h3>
+                            <p class="text-xs font-light text-gray-600 mb-4">Google'da organik otorite olmak için web sitesi kodlarına veya Google Tag Manager (GTM) içine eklenmesi gerekenler:</p>
+                            <ul class="space-y-3 text-sm font-light text-gray-700">
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#C5A059] rounded-full mr-2"></span> <strong>GSC Doğrulaması:</strong> Domain sağlayıcıdan TXT kaydı ile Google Search Console mülkü doğrulanmalı, sitemap.xml gönderilmeli.</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#C5A059] rounded-full mr-2"></span> <strong>Organization Schema:</strong> Markanın logosu, sosyal medya hesapları ve iletişim bilgileri JSON-LD olarak koda gömülmeli.</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#C5A059] rounded-full mr-2"></span> <strong>Product & Review Schema:</strong> Ürün sayfalarında fiyat, stok durumu ve müşteri yıldızları (AggregateRating) Google botlarına okutulmalı.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEO & AI OTORITE -->
+        <section id="view-seo" class="view-section hidden animate-fade-in">
+            <div class="mb-8 md:mb-10 bg-white p-6 sm:p-8 md:p-12 border border-gray-200">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif text-[#111111] mb-4 md:mb-6 leading-tight">LinkedIn & AI Otorite Stratejisi</h1>
+                <p class="text-base sm:text-lg leading-relaxed text-gray-600 mb-8 md:mb-10 font-light">
+                    Sıradan bir butik değiliz; ileri dönüşüm (upcycling) yapan, çevre bilinci olan lüks bir markayız. ChatGPT, Gemini gibi AI motorlarında ve Google SGE'de "otorite figür" (Entity) olarak algılanmak için B2B kanalımız LinkedIn olacaktır.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                    <div class="bg-white p-6 sm:p-8 border border-[#0A66C2] relative">
+                        <i class="absolute top-4 right-4 text-3xl text-[#0A66C2] opacity-20">in</i>
+                        <h3 class="font-serif text-xl sm:text-2xl text-[#111111] mb-3">LinkedIn: CEO İletişimi</h3>
+                        <p class="text-xs sm:text-sm font-light text-gray-600 mb-4">Kurucu Doğal Mesudiyeli'nin profili, sektörde "Thought Leader" (Fikir Önderi) olarak konumlanmalıdır.</p>
+                        <ul class="space-y-2 text-xs sm:text-sm text-gray-700">
+                            <li><strong>Konu 1:</strong> Kahve çuvallarından lüks çantaya: İleri dönüşüm hikayesi.</li>
+                            <li><strong>Konu 2:</strong> D2C (Direkt Tüketiciye) bir marka kurmanın zorlukları ve veriler.</li>
+                            <li><strong>Konu 3:</strong> Sürdürülebilir lüks tekstil üretiminde Türkiye'nin yeri.</li>
+                            <li class="mt-4 pt-4 border-t border-gray-100 text-[#0A66C2] font-semibold">Hedef: Kurumsal yatırımcılar, butik oteller, A+ beyaz yaka.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-[#111111] p-6 sm:p-8 text-white">
+                        <h3 class="font-serif text-xl sm:text-2xl text-[#C5A059] mb-3">Yapay Zeka SEO'su (GEO)</h3>
+                        <p class="text-xs sm:text-sm font-light text-gray-300 mb-4">AI botlarının Jutsack'ı önermesi için "Dijital Ayak İzi" genişletilmelidir.</p>
+                        <ul class="space-y-3 text-xs sm:text-sm text-gray-300">
+                            <li class="flex items-start"><span class="mr-2 text-[#C5A059] font-bold">/</span> <span><strong>PR & Backlink:</strong> Sürdürülebilirlik üzerine yayın yapan dijital dergilerde röportajlar ve marka mention'ları sağlanmalı.</span></li>
+                            <li class="flex items-start"><span class="mr-2 text-[#C5A059] font-bold">/</span> <span><strong>Wikipedia / Crunchbase:</strong> Marka ve kurucu için bilgi panelleri oluşturma çalışmaları başlatılmalı.</span></li>
+                            <li class="flex items-start"><span class="mr-2 text-[#C5A059] font-bold">/</span> <span><strong>Entity Optimization:</strong> Web sitesi "Hakkımızda" sayfasına AI botlarının anlayabileceği net "Biz kimiz, ne yapıyoruz, vizyonumuz ne?" metinleri eklenmeli.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REKLAM & BUTCE -->
+        <section id="view-huni" class="view-section hidden animate-fade-in">
+            <div class="mb-8 md:mb-10 bg-white p-6 sm:p-8 md:p-12 border border-gray-200">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif text-[#111111] mb-4 md:mb-6 leading-tight">Reklam & Bütçe Stratejisi</h1>
+                <p class="text-base sm:text-lg leading-relaxed text-gray-600 mb-8 md:mb-10 font-light">
+                    Kapanan hesabın yarattığı ciro boşluğunu hızla kapatmak için "Facebook Page" altyapısı ve yeni kanallarla kurgulanan bütçe haritası. Meta (Lokomotif) ve Google (Test) ağırlıklı ilerlenecektir.
+                </p>
+
+                <div class="bg-gray-50 p-6 border border-gray-200 mb-8">
+                    <h3 class="font-serif text-xl text-[#111111] mb-3">Facebook Page Üzerinden Reklam Çıkışı</h3>
+                    <p class="text-sm font-light text-gray-600 mb-4">Instagram hesabı askıya alınmış olsa bile, Jutsack'in resmi Facebook Sayfası (Page) markanın Meta panelindeki "kimliğidir". Hedef kitlemiz reklamları Instagram akışlarında görecek ancak tıklayıp doğrudan web sitemize yönelecektir.</p>
+                </div>
+
+                <h2 class="text-2xl font-serif text-[#111111] mb-6">Önerilen Bütçe Dağılımı (Panel Test Süreci)</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="chart-container border border-gray-100 p-4">
+                        <!-- Canvas placeholder for budget chart -->
+                        <canvas id="budgetChart"></canvas>
+                    </div>
+                    
+                    <div class="flex flex-col justify-center space-y-6">
+                        <div>
+                            <h4 class="font-bold text-sm uppercase tracking-wide text-[#111111] border-b border-gray-200 pb-1 mb-2">1. Meta Reklam Setleri (Lokomotif - %50)</h4>
+                            <p class="text-xs text-gray-600 font-light">E-ticaretin ana motoru Meta'dır. <strong>Lookalike (Benzer Kitle), Advantage+ Shopping (Dinamik Katalog), Retargeting (Sepet Terk Edenler) ve Etkileşim</strong> setleri kurularak doğrudan yüksek dönüşüm (ROAS) hedeflenmektedir.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm uppercase tracking-wide text-[#111111] border-b border-gray-200 pb-1 mb-2">2. Google Ads Test Fazı (%20)</h4>
+                            <p class="text-xs text-gray-600 font-light">Google tarafında geçmiş verimiz bulunmuyor. Bu sebeple bütçe düşük tutularak Arama Ağı (Search) ve PMax kampanyaları ile algoritmaya sadece "kaliteli veri" beslenecek, verim alındıkça bütçe ölçeklenecektir.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm uppercase tracking-wide text-[#111111] border-b border-gray-200 pb-1 mb-2">3. TikTok & Influencer (%20)</h4>
+                            <p class="text-xs text-gray-600 font-light">UGC (Kullanıcı) tarzı kısa videolarla dürtüsel satış. Doğal Mesudiyeli ve partnerlerin hesabından organik görünümlü çıkış.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm uppercase tracking-wide text-[#C5A059] border-b border-gray-200 pb-1 mb-2">4. CRM / SMS / E-Mail (%10)</h4>
+                            <p class="text-xs text-gray-600 font-light">Önceki sezonlardan kalan sadık müşteri datasına sıfır reklam maliyetiyle SMS ve Mail atılarak ciro takviyesi sağlanır.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ICERIK VE TAKVIM -->
+        <section id="view-icerik" class="view-section hidden animate-fade-in">
+            <div class="mb-8 md:mb-10 bg-white p-6 sm:p-8 md:p-12 border border-gray-200">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif text-[#111111] mb-4 md:mb-6 leading-tight">30 Günlük İçerik Takvimi</h1>
+                <p class="text-base sm:text-lg leading-relaxed text-gray-600 mb-8 font-light">
+                    Kurucu ortak hesabından (veya yedek hesaptan) "rahatsız etmeden" çıkılacak içeriklerin haftalık şablonu. Satış ve hikaye anlatıcılığı (storytelling) dengesi %30 Satış / %70 Lifestyle olacak şekilde kurgulanmıştır.
+                </p>
+
+                <div class="overflow-x-auto border border-gray-200 no-scrollbar">
+                    <table class="min-w-full text-xs sm:text-sm text-left text-gray-700">
+                        <thead class="bg-[#111111] text-white">
+                            <tr>
+                                <th class="px-4 py-3 font-semibold uppercase tracking-wider text-[10px]">Hafta</th>
+                                <th class="px-4 py-3 font-semibold uppercase tracking-wider text-[10px]">Format</th>
+                                <th class="px-4 py-3 font-semibold uppercase tracking-wider text-[10px]">Odak / Tema</th>
+                                <th class="px-4 py-3 font-semibold uppercase tracking-wider text-[10px]">İçerik Detayı & CTA</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <!-- Hafta 1 -->
+                            <tr class="table-row-hover">
+                                <td class="px-4 py-4 font-bold" rowspan="3">1. Hafta<br><span class="font-light text-[10px] text-gray-500">Güven Tesisi</span></td>
+                                <td class="px-4 py-4"><span class="border border-gray-300 px-2 py-1 text-[10px] font-bold">Carousel Post</span></td>
+                                <td class="px-4 py-4 text-[#C5A059] font-bold">Sezon Vitrini (Sabit)</td>
+                                <td class="px-4 py-4 font-light">Kişisel hesaba sabitlenecek şık bir sezon derlemesi. CTA: "Yaz ruhu profildeki linkte."</td>
+                            </tr>
+                            <tr class="table-row-hover">
+                                <td class="px-4 py-4"><span class="border border-gray-300 px-2 py-1 text-[10px] font-bold">Story Serisi</span></td>
+                                <td class="px-4 py-4 font-semibold">Atölye / Kamera Arkası</td>
+                                <td class="px-4 py-4 font-light">Ürün paketleme veya tasarım detayı. Müşteriye markanın çalıştığı hissini vermek.</td>
+                            </tr>
+                            <tr class="table-row-hover">
+                                <td class="px-4 py-4"><span class="border border-gray-300 px-2 py-1 text-[10px] font-bold">Reels / TikTok</span></td>
+                                <td class="px-4 py-4 font-semibold">Lifestyle Kombin</td>
+                                <td class="px-4 py-4 font-light">Gündelik yaşamda Jutsack çantası nasıl duruyor? Doğal akışlı video.</td>
+                            </tr>
+                            
+                            <!-- Hafta 2 -->
+                            <tr class="table-row-hover border-t-2 border-gray-200">
+                                <td class="px-4 py-4 font-bold" rowspan="2">2. Hafta<br><span class="font-light text-[10px] text-gray-500">Kârlılık Odaklı</span></td>
+                                <td class="px-4 py-4"><span class="border border-gray-300 px-2 py-1 text-[10px] font-bold">Reels (UGC)</span></td>
+                                <td class="px-4 py-4 font-semibold">Hero Ürün: Siyah Pareo</td>
+                                <td class="px-4 py-4 font-light">Kumaş kalitesi ve duruşunu gösteren (%57 kârlı ürün) kısa, estetik video.</td>
+                            </tr>
+                            <tr class="table-row-hover">
+                                <td class="px-4 py-4"><span class="border border-gray-300 px-2 py-1 text-[10px] font-bold">Story / Anket</span></td>
+                                <td class="px-4 py-4 font-semibold">Etkileşim</td>
+                                <td class="px-4 py-4 font-light">"Hangi renk favorin?" (Pinky vs Mocha). Story'den siteye link çıkışı.</td>
+                            </tr>
+
+                            <!-- Hafta 3 -->
+                            <tr class="table-row-hover border-t-2 border-gray-200">
+                                <td class="px-4 py-4 font-bold" rowspan="2">3. Hafta<br><span class="font-light text-[10px] text-gray-500">Çapraz Satış</span></td>
+                                <td class="px-4 py-4"><span class="border border-gray-300 px-2 py-1 text-[10px] font-bold">Post / Carousel</span></td>
+                                <td class="px-4 py-4 font-semibold">Set Kullanımı (Bundle)</td>
+                                <td class="px-4 py-4 font-light">"Pareo + Çanta" Birlikte nasıl eşleşir? Sepet ortalamasını 7.500₺'ye çekme hedefi.</td>
+                            </tr>
+                            <tr class="table-row-hover">
+                                <td class="px-4 py-4"><span class="border border-gray-300 px-2 py-1 text-[10px] font-bold">LinkedIn Makalesi</span></td>
+                                <td class="px-4 py-4 font-semibold">B2B / Sürdürülebilirlik</td>
+                                <td class="px-4 py-4 font-light">"İleri dönüşüm markası yönetmek". LinkedIn'de PR çalışması.</td>
+                            </tr>
+
+                            <!-- Hafta 4 -->
+                            <tr class="table-row-hover border-t-2 border-gray-200">
+                                <td class="px-4 py-4 font-bold" rowspan="2">4. Hafta<br><span class="font-light text-[10px] text-gray-500">Kapanış & FOMO</span></td>
+                                <td class="px-4 py-4"><span class="border border-gray-300 px-2 py-1 text-[10px] font-bold">Reels / TikTok</span></td>
+                                <td class="px-4 py-4 font-semibold">Unboxing (Kutu Açılımı)</td>
+                                <td class="px-4 py-4 font-light">Influencer veya müşteri gözünden Jutsack siparişinin elinize ulaşma deneyimi.</td>
+                            </tr>
+                            <tr class="table-row-hover">
+                                <td class="px-4 py-4"><span class="border border-gray-300 px-2 py-1 text-[10px] font-bold">Story Serisi</span></td>
+                                <td class="px-4 py-4 text-red-600 font-bold">Stok Uyarısı</td>
+                                <td class="px-4 py-4 font-light">"Favori setlerde son stoklar". Doğrudan satın almaya yönlendiren aciliyet hissi.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6 AYLIK PLAN -->
+        <section id="view-plan" class="view-section hidden animate-fade-in">
+            <div class="mb-8 md:mb-10 bg-white p-6 sm:p-8 md:p-12 border border-gray-200">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif text-[#111111] mb-4 md:mb-6 leading-tight">6 Aylık Dijital Ölçekleme</h1>
+                <p class="text-base sm:text-lg leading-relaxed text-gray-600 mb-8 md:mb-12 font-light">
+                    Krizi atlattıktan sonra markayı bir sonraki seviyeye (Sürdürülebilir büyüme ve global algı) taşıyacak genişletilmiş zaman çizelgesi.
+                </p>
+
+                <div class="relative pl-4 sm:pl-6 border-l border-[#111111] space-y-8 sm:space-y-12 ml-1 sm:ml-2">
+                    
+                    <!-- Faz 1 -->
+                    <div class="timeline-item relative">
+                        <div class="bg-white p-6 sm:p-8 border border-gray-200 ml-4 sm:ml-6 hover:bg-gray-50 transition-colors">
+                            <span class="inline-block px-2 sm:px-3 py-1 bg-[#111111] text-white text-[8px] sm:text-[10px] uppercase tracking-widest mb-3 sm:mb-4">1. - 2. Ay: Toparlanma ve Temel</span>
+                            <h3 class="font-serif text-xl sm:text-2xl text-[#111111] mb-3 sm:mb-4">Omnichannel Geçişi</h3>
+                            <ul class="list-none text-gray-600 space-y-2 text-xs sm:text-sm font-light">
+                                <li><span class="text-[#C5A059] mr-2">/</span> Meta itiraz süreci. Kurucu ortak hesabı üzerinden "Köprü" stratejisinin başlatılması.</li>
+                                <li><span class="text-[#C5A059] mr-2">/</span> Google PMax (Alışveriş) feed'lerinin Vikaon üzerinden aktarılıp onaylatılması.</li>
+                                <li><span class="text-[#C5A059] mr-2">/</span> CRM entegrasyonu. Terk edilmiş sepet maillerinin ve sadakat SMS'lerinin otomasyona bağlanması.</li>
+                                <li><span class="text-[#C5A059] mr-2">/</span> Web sitesine Apple Pay ve JSON-LD yapısal verilerinin eklenmesi.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Faz 2 -->
+                    <div class="timeline-item relative">
+                        <div class="bg-white p-6 sm:p-8 border border-gray-200 ml-4 sm:ml-6 hover:bg-gray-50 transition-colors">
+                            <span class="inline-block px-2 sm:px-3 py-1 bg-[#C5A059] text-white text-[8px] sm:text-[10px] uppercase tracking-widest mb-3 sm:mb-4">3. - 4. Ay: Ölçekleme & Otorite</span>
+                            <h3 class="font-serif text-xl sm:text-2xl text-[#111111] mb-3 sm:mb-4">Ciro Maksimizasyonu</h3>
+                            <ul class="list-none text-gray-600 space-y-2 text-xs sm:text-sm font-light">
+                                <li><span class="text-[#C5A059] mr-2">/</span> TikTok ve Reels üzerinden UGC videolarına aylık 25.000₺+ bütçe ile basılması.</li>
+                                <li><span class="text-[#C5A059] mr-2">/</span> "Hero" ürünlerde (Siyah Pareo, Setler) çapraz satış kurallarıyla AOV'nin (Sepet Ort.) 7.500₺ yapılması.</li>
+                                <li><span class="text-[#C5A059] mr-2">/</span> LinkedIn üzerinden kurucu iletişiminin (B2B paylaşımları) düzenli hale gelmesi.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Faz 3 -->
+                    <div class="timeline-item relative">
+                        <div class="bg-white p-6 sm:p-8 border border-gray-200 ml-4 sm:ml-6 hover:bg-gray-50 transition-colors">
+                            <span class="inline-block px-2 sm:px-3 py-1 bg-gray-200 text-[#111111] text-[8px] sm:text-[10px] uppercase tracking-widest mb-3 sm:mb-4 font-bold">5. - 6. Ay: Kışa Hazırlık ve B2B</span>
+                            <h3 class="font-serif text-xl sm:text-2xl text-[#111111] mb-3 sm:mb-4">Pivot & Yeni Koleksiyon</h3>
+                            <ul class="list-none text-gray-600 space-y-2 text-xs sm:text-sm font-light">
+                                <li><span class="text-[#C5A059] mr-2">/</span> Plaj giyiminden "Mumlu Kanvas" ve "Denim Ceket" gibi şehir/sonbahar ürünlerine geçiş kampanyaları.</li>
+                                <li><span class="text-[#C5A059] mr-2">/</span> B2B Satışlar: Butik oteller ve kurumsal hediye çözümleri için (Jutsack Works) özel landing page açılması.</li>
+                                <li><span class="text-[#C5A059] mr-2">/</span> Geri dönen müşterilerin (Retention Rate) %30 bandına oturtulması.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- HIZMET VE BEDEL (YENI) -->
+        <section id="view-hizmet" class="view-section hidden animate-fade-in">
+            <div class="mb-8 md:mb-10 bg-white p-6 sm:p-8 md:p-12 border border-gray-200">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif text-[#111111] mb-4 md:mb-6 leading-tight">Çalışma Modeli & Yönetim Bedeli</h1>
+                <p class="text-base sm:text-lg leading-relaxed text-gray-600 mb-8 md:mb-10 font-light">
+                    Bu proje kapsamında sıradan bir ajans işleyişiyle değil, markanızın bünyesinde bir <strong>Dijital Dönüşüm Uzmanı ve Stratejist</strong> olarak yer alacağım. Tüm dijital varlıkların senkronize edilmesi, operasyonel dönüşüm (CRO) ve veri odaklı reklam kurulumları bizzat tarafımca yönetilecektir.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-gray-50 p-6 sm:p-8 border border-gray-200">
+                        <span class="text-[10px] uppercase tracking-widest font-bold text-[#C5A059] block mb-2">Görev Tanımı</span>
+                        <h3 class="font-serif text-xl sm:text-2xl text-[#111111] mb-4">Dijital Stratejist Olarak Rolüm</h3>
+                        <ul class="space-y-3 font-light text-sm text-gray-700">
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 bg-[#111111] rounded-full mr-2 mt-1.5"></span> <strong>Dijital Varlık Optimizasyonu:</strong> Web sitesi analizleri, pixel/API kurulumları ve dönüşüm oranı artırıcı (CRO) teknik iyileştirmelerin denetimi.</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 bg-[#111111] rounded-full mr-2 mt-1.5"></span> <strong>Meta Reklam Yönetimi:</strong> Kampanya mimarisi, satış getirecek gelişmiş reklam setlerinin (Advantage+, Lookalike, Retargeting) uçtan uca kurulumu ve günlük bütçe takibi.</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 bg-[#111111] rounded-full mr-2 mt-1.5"></span> <strong>Google Reklam Optimizasyonu:</strong> İlk kez denenecek PMax ve Arama Ağı kampanyalarının yapılandırılması, arama niyetine göre veri toplanması.</li>
+                            <li class="flex items-start"><span class="w-1.5 h-1.5 bg-[#111111] rounded-full mr-2 mt-1.5"></span> <strong>Stratejik Danışmanlık:</strong> "Hangi marjlı ürüne reklam çıkmalıyız?", "Aylık içerik yönümüz ne olmalı?" gibi büyüme (Growth) odaklı marka yönlendirmeleri.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 sm:p-8 border border-gray-200">
+                        <span class="text-[10px] uppercase tracking-widest font-bold text-[#C5A059] block mb-2">Finansal Çerçeve</span>
+                        <h3 class="font-serif text-xl sm:text-2xl text-[#111111] mb-4">Hizmet Bedeli & Gider Dağılımı</h3>
+                        
+                        <div class="bg-[#111111] text-white p-5 mb-5 border-l-4 border-[#C5A059]">
+                            <span class="text-[10px] uppercase tracking-widest text-gray-400 block mb-1">Aylık Danışmanlık ve Yönetim Bedeli</span>
+                            <div class="text-3xl font-serif tracking-wide">55.000 TL <span class="text-sm font-light text-gray-400">+ KDV</span></div>
+                            <p class="text-xs text-[#C5A059] mt-2 font-light">Bu bedel, anlaşmanın ilk 3 ayı için sabitlenmiş tutardır.</p>
+                        </div>
+
+                        <div class="space-y-4 font-light text-sm text-gray-700">
+                            <div class="border-b border-gray-100 pb-3">
+                                <strong class="block text-black mb-1">Markaya (Jutsack'e) Ait Giderler:</strong>
+                                <p class="text-xs leading-relaxed">Platformlara ödenecek Reklam Bütçeleri (Meta, Google vb.), Hosting, Domain yenilemeleri, teknik/yazılım entegrasyon ücretleri ve SMS/Mail otomasyon araçları doğrudan Jutsack sorumluluğundadır ve kurumun kredi kartlarından otomatik tahsil edilir.</p>
+                            </div>
+                            <div class="pt-1">
+                                <strong class="block text-black mb-1">3. Ay Sonu Yeniden Değerlendirme (Kreatif Toplantı):</strong>
+                                <p class="text-xs leading-relaxed">İlk 3 aylık büyüme verileri incelenerek yeni sezon (Sonbahar/Kış) stratejisi oluşturulur. Artan iş hacmi ve yeni marka vizyonu doğrultusunda yönetim bedeli ve reklam bütçeleri karşılıklı toplantı ile yeniden belirlenir.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#111111] text-white py-8 sm:py-12 mt-auto border-t border-[#333]">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <img src="https://jutsack.com/data/files/source/jutsack-logo1.png" alt="Jutsack" class="h-8 mx-auto mb-4 filter brightness-0 invert opacity-80">
+            <p class="text-[10px] sm:text-xs text-gray-500 uppercase tracking-widest">Genişletilmiş Dijital Pazarlama & Fizibilite Stratejisi</p>
+        </div>
+    </footer>
+
+    <script>
+        const appState = {
+            currentView: 'marka'
+        };
+
+        let budgetChartInstance = null;
+
+        function initBudgetChart() {
+            if (budgetChartInstance) budgetChartInstance.destroy();
+            
+            const ctx = document.getElementById('budgetChart').getContext('2d');
+            Chart.defaults.font.family = "'Inter', sans-serif";
+            
+            budgetChartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Meta Setleri (Lokomotif)', 'Google Ads (Test)', 'TikTok & Influencer', 'CRM / SMS / Mail'],
+                    datasets: [{
+                        data: [50, 20, 20, 10],
+                        backgroundColor: ['#111111', '#444444', '#C5A059', '#E5E5E5'],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#111111',
+                            titleFont: { family: "'Inter', sans-serif", size: 13 },
+                            bodyFont: { family: "'Inter', sans-serif", size: 12 },
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    return ' Bütçe Payı: %' + context.parsed;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function switchTab(viewId) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(`view-${viewId}`).classList.remove('hidden');
+            document.getElementById(`btn-${viewId}`).classList.add('active');
+            
+            appState.currentView = viewId;
+
+            if (viewId === 'huni') {
+                setTimeout(() => initBudgetChart(), 100);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            window.addEventListener('resize', () => {
+                if (appState.currentView === 'huni') {
+                    initBudgetChart();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
